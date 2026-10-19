@@ -15,7 +15,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Check the tag matches manifest.json
         run: |
           version="$(jq -r .version custom_components/badgemagic/manifest.json)"
@@ -27,7 +27,7 @@ jobs:
         run: python3 scripts/sync_library.py --check
       - name: Zip the integration
         run: cd custom_components/badgemagic && zip -r ../../badgemagic.zip . -x '__pycache__/*'
-      - uses: softprops/action-gh-release@v2
+      - uses: softprops/action-gh-release@v3
         with:
           files: badgemagic.zip
           generate_release_notes: true

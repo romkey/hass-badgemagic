@@ -26,7 +26,7 @@ CONF_SPEED: Final = "speed"
 CONF_FLASH: Final = "flash"
 CONF_MARQUEE: Final = "marquee"
 CONF_SET_CLOCK: Final = "set_clock"
-# Stay connected after an upload so the open firmware keeps advertising.
+# Experimental: stay connected after an upload, hoping the open firmware keeps advertising.
 CONF_KEEP_BLUETOOTH: Final = "keep_bluetooth_on"
 # What to do with text wider than the display in modes that show 44-column pages.
 CONF_WIDE_TEXT: Final = "wide_text"
@@ -60,7 +60,8 @@ DEFAULT_SPEED: Final = 4
 DEFAULT_FLASH: Final = False
 DEFAULT_MARQUEE: Final = False
 DEFAULT_SET_CLOCK: Final = True
-DEFAULT_KEEP_BLUETOOTH: Final = True
+# Off: in testing it did not keep the badge advertising (see PLAN.md).
+DEFAULT_KEEP_BLUETOOTH: Final = False
 
 # Wide text in paged modes: "page" shows it 44 columns at a time (firmware
 # behavior), "scroll" switches the message to scroll_left, "clip" keeps the

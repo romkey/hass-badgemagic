@@ -51,7 +51,8 @@ DEFAULT_RESULT_TIMEOUT = 5.0
 # The open firmware switches advertising off 1.5 s after an upload completes
 # and back on whenever a central disconnects (src/main.c, handle_after_rx and
 # src/ble/peripheral.c, link_onTerminated). Staying connected past the 1.5 s
-# means the disconnect turns advertising back on.
+# should mean the disconnect turns advertising back on. Experimental: it did
+# not work in testing on one badge.
 KEEP_ADVERTISING_LINGER = 2.5
 # power_off and reboot act before the firmware can answer the write.
 _FIRE_AND_FORGET_TIMEOUT = 2.0
@@ -225,7 +226,8 @@ class BadgeClient:
         ``linger`` keeps the connection open for that many seconds after the
         last packet. On the open firmware, lingering longer than 1.5 s (see
         ``KEEP_ADVERTISING_LINGER``) makes the badge advertise again after the
-        disconnect instead of switching Bluetooth off. Unverified on hardware.
+        disconnect instead of switching Bluetooth off, according to the firmware
+        source. In testing on one badge it did not; it may depend on the build.
 
         Raises ``PinRequired`` if the badge has SECURITY enabled and no PIN was
         given, ``PinRejected`` for a wrong PIN.

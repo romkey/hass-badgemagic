@@ -35,7 +35,7 @@
           "marquee": "Marquee",
           "set_clock": "Set the badge clock on upload",
           "wide_text": "Wide text in page modes",
-          "keep_bluetooth_on": "Keep Bluetooth on after uploads"
+          "keep_bluetooth_on": "Keep Bluetooth on after uploads (experimental)"
         },
         "data_description": {
           "font": "Font for text sent by the Message, notify and send_messages entities and actions.",
@@ -45,7 +45,7 @@
           "marquee": "Marquee for send_messages messages that do not set it, and the initial Marquee entity value.",
           "set_clock": "Every upload carries the current time, which the open firmware loads into its clock.",
           "wide_text": "In fixed, snowflake, picture and laser modes the badge shows text wider than 44 pixels one 44-pixel page at a time. Choose to keep that, scroll the text instead, or show only the first page.",
-          "keep_bluetooth_on": "Stay connected for 2.5 seconds after each upload. The open firmware switches Bluetooth off 1.5 seconds after an upload but turns it back on when Home Assistant disconnects, so the badge stays reachable. Not yet verified on hardware."
+          "keep_bluetooth_on": "Stay connected for 2.5 seconds after each upload, in the hope that the badge keeps advertising afterwards. The firmware source suggests it should, but it has not worked in testing and may depend on the firmware build. Leave it off unless you are experimenting: it makes every upload 2.5 seconds longer."
         }
       }
     }
@@ -331,7 +331,7 @@
   "issues": {
     "bluetooth_off_after_upload": {
       "title": "{name} switched Bluetooth off after an upload",
-      "description": "The open Badge Magic firmware turns Bluetooth off after it receives messages, so Home Assistant can no longer reach {name}. Put the badge in BT-PAIRING mode to reconnect.\n\nTo keep the badge reachable, turn on **Keep Bluetooth on after uploads** in the badge's options, and turn on the **Always-on Bluetooth** switch so the badge advertises after it restarts. This issue clears itself when the badge advertises again."
+      "description": "The open Badge Magic firmware turns Bluetooth off after it receives messages, so Home Assistant can no longer reach {name}. Put the badge in BT-PAIRING mode to reconnect.\n\nTo change what the badge shows without uploading, use the **Streaming** switch or the stream actions: the badge stays connected and reachable while streaming. This issue clears itself when the badge advertises again."
     }
   }
 }

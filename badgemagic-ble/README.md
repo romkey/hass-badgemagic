@@ -123,8 +123,9 @@ after the upload, so the next command works without re-entering BT-PAIRING:
 badgemagic send --text HELLO --linger 2.5
 ```
 
-This follows from the firmware source and has not been verified on a badge yet.
-After the upload, run `badgemagic scan`: if the badge is listed, it worked.
+This follows from the firmware source, but it did not work in testing on one
+badge, so it may depend on the firmware build. After the upload, run
+`badgemagic scan`: if the badge is listed, it worked on your firmware.
 In code, pass `linger=KEEP_ADVERTISING_LINGER` (from `badgemagic_ble.client`)
 to `BadgeClient.upload`.
 

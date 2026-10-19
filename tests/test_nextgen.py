@@ -270,13 +270,14 @@ async def test_set_splash_screen_too_large(
 async def test_upload_lingers_on_open_firmware(
     hass: HomeAssistant, setup_entry: MockConfigEntry, mock_client: MagicMock
 ) -> None:
+    # Off by default.
     await set_text(hass, MESSAGE, "HI")
-    assert mock_client.upload.await_args.kwargs["linger"] == KEEP_ADVERTISING_LINGER
+    assert mock_client.upload.await_args.kwargs["linger"] == 0.0
 
     mock_client.upload.reset_mock()
-    hass.config_entries.async_update_entry(setup_entry, options={**setup_entry.options, CONF_KEEP_BLUETOOTH: False})
+    hass.config_entries.async_update_entry(setup_entry, options={**setup_entry.options, CONF_KEEP_BLUETOOTH: True})
     await set_text(hass, MESSAGE, "HO")
-    assert mock_client.upload.await_args.kwargs["linger"] == 0.0
+    assert mock_client.upload.await_args.kwargs["linger"] == KEEP_ADVERTISING_LINGER
 
 
 async def test_repair_issue_when_bluetooth_goes_off_after_upload(

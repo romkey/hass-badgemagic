@@ -579,3 +579,18 @@ The user installed the integration on their Home Assistant and reports that it
 works. This supersedes the "untested on a real Home Assistant instance" notes in the
 status sections above. The "Keep Bluetooth on after uploads" linger behavior has not
 been reported on specifically and stays marked unverified.
+
+## Keep Bluetooth on, crash report, CI actions (2026-10-19)
+
+- The user has seen no sign that "Keep Bluetooth on after uploads" (the 2.5 s linger)
+  works: the badge still stops advertising after uploads. It is probably firmware
+  dependent. The option now defaults to **off** and is labelled experimental; the
+  repair issue no longer recommends it and points to streaming instead. Existing
+  config entries keep the value they were created with (on), so turn it off in the
+  badge's options.
+- The user crashed the badge once while testing. The cause is unknown. The README
+  now says switching the badge off and on recovers it.
+- GitHub Actions bumped to clear the Node.js 20 deprecation warning:
+  `actions/checkout@v7`, `actions/setup-python@v7`, `astral-sh/setup-uv@v10.3.0`
+  (setup-uv no longer moves major tags, so it is pinned exactly) and
+  `softprops/action-gh-release@v3`.

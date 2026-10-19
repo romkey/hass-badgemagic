@@ -312,7 +312,7 @@ def build_parser() -> argparse.ArgumentParser:
         type=float,
         default=0.0,
         metavar="SECONDS",
-        help="stay connected this long after the upload; 2.5 or more should keep the open firmware advertising",
+        help="stay connected this long after the upload (experimental: 2.5 may keep some firmware builds advertising)",
     )
     p.set_defaults(func=cmd_send)
 

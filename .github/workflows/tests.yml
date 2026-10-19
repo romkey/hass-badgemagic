@@ -13,8 +13,8 @@ jobs:
     name: Bundled library matches badgemagic-ble
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.13"
       - run: python3 scripts/sync_library.py --check
@@ -22,8 +22,8 @@ jobs:
   pytest:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.3.0
         with:
           python-version: "3.14"
       - name: Install dependencies

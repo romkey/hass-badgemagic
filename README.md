@@ -150,7 +150,8 @@ Per badge (**Settings > Devices & services > Badge Magic > Configure**):
   left alone, since pages are its frames.
 - **Set the badge clock on upload** (on by default). The open firmware loads each
   upload's timestamp into its clock.
-- **Keep Bluetooth on after uploads** (open firmware, on by default). See below.
+- **Keep Bluetooth on after uploads** (open firmware, experimental, off by default).
+  See below.
 
 ## Reaching the badge
 
@@ -174,11 +175,15 @@ whatever the always-on setting, and returns to its menu. Someone then has to cho
 ANIMATION on the badge to show the new messages. This is a firmware limitation
 (see `PLAN.md`, sections 1 and 6).
 
-The firmware also switches advertising back on whenever a client disconnects. With
-**Keep Bluetooth on after uploads**, Home Assistant stays connected for 2.5 seconds
-after each upload, past the 1.5-second switch-off, so the disconnect turns
-advertising back on. This follows from the firmware source and has **not been
-verified on a badge yet**. You can check it with the library's command-line tool:
+To change the display without an upload, and without anyone touching the badge,
+use [streaming](#streaming): the badge stays connected and reachable the whole time.
+
+**Keep Bluetooth on after uploads** is an experiment and is off by default. The
+firmware source shows advertising coming back on whenever a client disconnects, so
+the option keeps Home Assistant connected for 2.5 seconds after each upload, past
+the 1.5-second switch-off. In testing the badge still went quiet after uploads, so
+it may depend on the firmware build. If you want to try it on your badge, the
+library's command-line tool does the same thing:
 
 ```bash
 badgemagic send --text HELLO --linger 2.5
@@ -188,7 +193,10 @@ badgemagic send --text HELLO --linger 2.5
 badgemagic scan
 ```
 
-If the second command still lists the badge, it works.
+If the second command still lists the badge, it works on your firmware.
+
+The badge firmware can occasionally crash or stop responding. Switching the badge
+off and on again recovers it.
 
 If a badge stops advertising within ten minutes of an upload, Home Assistant
 raises a repair issue explaining how to get it back. The issue clears itself when

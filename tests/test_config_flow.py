@@ -168,7 +168,7 @@ async def test_options_flow(hass: HomeAssistant, setup_entry: MockConfigEntry) -
         CONF_MARQUEE: True,
         CONF_SET_CLOCK: False,
         CONF_WIDE_TEXT: "scroll",
-        CONF_KEEP_BLUETOOTH: False,
+        CONF_KEEP_BLUETOOTH: True,
     }
     result = await hass.config_entries.options.async_configure(result["flow_id"], new_options)
     assert result["type"] is FlowResultType.CREATE_ENTRY
