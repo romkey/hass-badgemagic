@@ -1,0 +1,128 @@
+send_messages:
+  target:
+    device:
+      integration: badgemagic
+  fields:
+    messages:
+      required: true
+      example: >-
+        - text: "Doorbell"
+          mode: fixed
+          flash: true
+        - text: "Hello from Home Assistant"
+          speed: 6
+        - image: /config/www/heart.png
+          mode: picture
+      selector:
+        object:
+    pin:
+      example: "6512"
+      selector:
+        text:
+    set_clock:
+      selector:
+        boolean:
+
+set_splash_screen:
+  target:
+    device:
+      integration: badgemagic
+  fields:
+    image:
+      required: true
+      example: /config/www/splash.png
+      selector:
+        text:
+    frame_height:
+      default: 11
+      selector:
+        number:
+          min: 1
+          max: 255
+          mode: box
+    speed_ms:
+      example: 30
+      selector:
+        number:
+          min: 0
+          max: 65535
+          unit_of_measurement: ms
+          mode: box
+
+stream_frame:
+  target:
+    device:
+      integration: badgemagic
+  fields:
+    text:
+      example: "21.5°"
+      selector:
+        text:
+    image:
+      example: /config/www/icon.png
+      selector:
+        text:
+    font:
+      selector:
+        select:
+          options:
+            - normal
+            - compact
+            - tiny
+          translation_key: font
+    align:
+      default: center
+      selector:
+        select:
+          options:
+            - left
+            - center
+            - right
+          translation_key: align
+
+stream_text:
+  target:
+    device:
+      integration: badgemagic
+  fields:
+    text:
+      required: true
+      example: "Dinner is ready"
+      selector:
+        text:
+    font:
+      selector:
+        select:
+          options:
+            - normal
+            - compact
+            - tiny
+          translation_key: font
+    effect:
+      default: auto
+      selector:
+        select:
+          options:
+            - auto
+            - scroll
+            - fixed
+          translation_key: effect
+    fps:
+      default: 10
+      selector:
+        number:
+          min: 1
+          max: 20
+          step: 1
+          mode: slider
+    duration:
+      selector:
+        number:
+          min: 0
+          max: 86400
+          unit_of_measurement: s
+          mode: box
+    stop_after:
+      default: false
+      selector:
+        boolean:

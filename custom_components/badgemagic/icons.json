@@ -1,0 +1,99 @@
+{
+  "entity": {
+    "notify": {
+      "message": {
+        "default": "mdi:message-text"
+      }
+    },
+    "text": {
+      "message": {
+        "default": "mdi:message-text"
+      },
+      "device_name": {
+        "default": "mdi:rename"
+      }
+    },
+    "select": {
+      "mode": {
+        "default": "mdi:animation-play"
+      }
+    },
+    "number": {
+      "speed": {
+        "default": "mdi:speedometer"
+      },
+      "brightness": {
+        "default": "mdi:brightness-6"
+      }
+    },
+    "switch": {
+      "flash": {
+        "default": "mdi:flash"
+      },
+      "marquee": {
+        "default": "mdi:border-outside"
+      },
+      "always_on": {
+        "default": "mdi:bluetooth-off",
+        "state": {
+          "on": "mdi:bluetooth"
+        }
+      },
+      "reset_after_upload": {
+        "default": "mdi:restart"
+      },
+      "streaming": {
+        "default": "mdi:television-play"
+      }
+    },
+    "sensor": {
+      "firmware": {
+        "default": "mdi:chip"
+      }
+    },
+    "binary_sensor": {
+      "reachable": {
+        "default": "mdi:bluetooth-off",
+        "state": {
+          "on": "mdi:bluetooth"
+        }
+      },
+      "streaming_active": {
+        "default": "mdi:television-off",
+        "state": {
+          "on": "mdi:television-play"
+        }
+      }
+    },
+    "button": {
+      "power_off": {
+        "default": "mdi:power"
+      },
+      "save_config": {
+        "default": "mdi:content-save"
+      },
+      "load_defaults": {
+        "default": "mdi:backup-restore"
+      }
+    },
+    "image": {
+      "preview": {
+        "default": "mdi:dots-grid"
+      }
+    }
+  },
+  "services": {
+    "send_messages": {
+      "service": "mdi:card-text"
+    },
+    "set_splash_screen": {
+      "service": "mdi:image-frame"
+    },
+    "stream_frame": {
+      "service": "mdi:television-play"
+    },
+    "stream_text": {
+      "service": "mdi:text-shadow"
+    }
+  }
+}

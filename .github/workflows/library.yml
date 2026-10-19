@@ -1,0 +1,34 @@
+name: Library
+
+on:
+  push:
+    paths:
+      - "badgemagic-ble/**"
+      - ".github/workflows/library.yml"
+  pull_request:
+    paths:
+      - "badgemagic-ble/**"
+      - ".github/workflows/library.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: badgemagic-ble
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: uv venv && uv pip install -e ".[dev]"
+      - run: uv run --no-project python -m pytest -q
+      - run: uv build

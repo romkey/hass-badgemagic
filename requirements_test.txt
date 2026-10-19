@@ -1,0 +1,9 @@
+# Test dependencies for the integration. The badgemagic-ble version comes from
+# custom_components/badgemagic/manifest.json (CI installs it from PyPI; locally,
+# install ./badgemagic-ble in editable mode instead).
+pytest-homeassistant-custom-component==0.13.373
+# Requirements of Home Assistant's usb and bluetooth integrations that the test
+# package does not pull in.
+aiousbwatcher==1.1.2
+serialx==1.11.0
+dbus-fast==5.0.22

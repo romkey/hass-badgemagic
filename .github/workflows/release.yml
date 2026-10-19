@@ -1,0 +1,31 @@
+name: Release
+
+# Push a tag such as v0.2.0 (matching "version" in manifest.json) to publish a
+# GitHub release of the integration, which HACS offers as an update. Library
+# releases use badgemagic-ble-v* tags instead (library-publish.yml).
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check the tag matches manifest.json
+        run: |
+          version="$(jq -r .version custom_components/badgemagic/manifest.json)"
+          if [ "v${version}" != "${GITHUB_REF_NAME}" ]; then
+            echo "Tag ${GITHUB_REF_NAME} does not match manifest version ${version}" >&2
+            exit 1
+          fi
+      - name: Zip the integration
+        run: cd custom_components/badgemagic && zip -r ../../badgemagic.zip . -x '__pycache__/*'
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: badgemagic.zip
+          generate_release_notes: true

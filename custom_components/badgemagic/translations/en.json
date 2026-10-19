@@ -1,0 +1,321 @@
+{
+  "config": {
+    "flow_title": "{name}",
+    "step": {
+      "user": {
+        "description": "Choose a badge to set up. Only badges that are advertising are listed: put the badge in BT-PAIRING mode first.",
+        "data": {
+          "address": "Badge"
+        },
+        "data_description": {
+          "address": "Badges seen by Home Assistant's Bluetooth adapters and proxies."
+        }
+      },
+      "bluetooth_confirm": {
+        "description": "Set up {name}? Home Assistant connects to the badge once to read its model and firmware, so keep it in BT-PAIRING mode until setup finishes."
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not connect to the badge. Make sure it is in BT-PAIRING mode and no phone is connected to it, then try again."
+    },
+    "abort": {
+      "already_configured": "This badge is already configured.",
+      "no_devices_found": "No advertising badges found. Put the badge in BT-PAIRING mode and try again."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Message defaults",
+        "data": {
+          "font": "Font",
+          "mode": "Mode",
+          "speed": "Speed",
+          "flash": "Flash",
+          "marquee": "Marquee",
+          "set_clock": "Set the badge clock on upload",
+          "wide_text": "Wide text in page modes",
+          "keep_bluetooth_on": "Keep Bluetooth on after uploads"
+        },
+        "data_description": {
+          "font": "Font for text sent by the Message, notify and send_messages entities and actions.",
+          "mode": "Mode for send_messages messages that do not set one, and the initial Mode entity value.",
+          "speed": "Speed for send_messages messages that do not set one, and the initial Speed entity value.",
+          "flash": "Flash for send_messages messages that do not set it, and the initial Flash entity value.",
+          "marquee": "Marquee for send_messages messages that do not set it, and the initial Marquee entity value.",
+          "set_clock": "Every upload carries the current time, which the open firmware loads into its clock.",
+          "wide_text": "In fixed, snowflake, picture and laser modes the badge shows text wider than 44 pixels one 44-pixel page at a time. Choose to keep that, scroll the text instead, or show only the first page.",
+          "keep_bluetooth_on": "Stay connected for 2.5 seconds after each upload. The open firmware switches Bluetooth off 1.5 seconds after an upload but turns it back on when Home Assistant disconnects, so the badge stays reachable. Not yet verified on hardware."
+        }
+      }
+    }
+  },
+  "selector": {
+    "mode": {
+      "options": {
+        "scroll_left": "Scroll left",
+        "scroll_right": "Scroll right",
+        "scroll_up": "Scroll up",
+        "scroll_down": "Scroll down",
+        "fixed": "Fixed",
+        "animation": "Animation",
+        "snowflake": "Snowflake",
+        "picture": "Picture",
+        "laser": "Laser"
+      }
+    },
+    "font": {
+      "options": {
+        "normal": "Normal (6x10, 7 characters across)",
+        "compact": "Compact (5x8, 8 characters across)",
+        "tiny": "Tiny (4x6, 11 characters across)"
+      }
+    },
+    "wide_text": {
+      "options": {
+        "page": "Show it a page at a time (badge default)",
+        "scroll": "Scroll it instead",
+        "clip": "Show only the first page"
+      }
+    },
+    "align": {
+      "options": {
+        "left": "Left",
+        "center": "Center",
+        "right": "Right"
+      }
+    },
+    "effect": {
+      "options": {
+        "auto": "Scroll if wider than the display",
+        "scroll": "Scroll",
+        "fixed": "Fixed"
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "reachable": {
+        "name": "Bluetooth reachable"
+      },
+      "streaming_active": {
+        "name": "Streaming active"
+      }
+    },
+    "notify": {
+      "message": {
+        "name": "Message"
+      }
+    },
+    "number": {
+      "speed": {
+        "name": "Speed"
+      },
+      "brightness": {
+        "name": "Brightness"
+      }
+    },
+    "select": {
+      "mode": {
+        "name": "Mode",
+        "state": {
+          "scroll_left": "Scroll left",
+          "scroll_right": "Scroll right",
+          "scroll_up": "Scroll up",
+          "scroll_down": "Scroll down",
+          "fixed": "Fixed",
+          "animation": "Animation",
+          "snowflake": "Snowflake",
+          "picture": "Picture",
+          "laser": "Laser"
+        }
+      }
+    },
+    "sensor": {
+      "firmware": {
+        "name": "Firmware version"
+      }
+    },
+    "switch": {
+      "flash": {
+        "name": "Flash"
+      },
+      "marquee": {
+        "name": "Marquee"
+      },
+      "always_on": {
+        "name": "Always-on Bluetooth"
+      },
+      "reset_after_upload": {
+        "name": "Restart after upload"
+      },
+      "streaming": {
+        "name": "Streaming"
+      }
+    },
+    "text": {
+      "message": {
+        "name": "Message"
+      },
+      "device_name": {
+        "name": "Bluetooth name"
+      }
+    },
+    "button": {
+      "power_off": {
+        "name": "Power off"
+      },
+      "save_config": {
+        "name": "Save settings"
+      },
+      "load_defaults": {
+        "name": "Restore default settings"
+      }
+    },
+    "image": {
+      "preview": {
+        "name": "Display preview"
+      }
+    }
+  },
+  "exceptions": {
+    "not_advertising": {
+      "message": "{name} is not advertising over Bluetooth. Put the badge in BT-PAIRING mode, or enable always-on Bluetooth on it, then try again."
+    },
+    "cannot_connect": {
+      "message": "Could not connect to {name}: {error}. Put the badge in BT-PAIRING mode, or enable always-on Bluetooth on it, then try again."
+    },
+    "upload_failed": {
+      "message": "Uploading to {name} failed: {error}"
+    },
+    "pin_required": {
+      "message": "The badge has security enabled. Enter BT-PAIRING mode and pass the PIN it shows to the send_messages action."
+    },
+    "pin_rejected": {
+      "message": "The badge rejected the PIN. The PIN changes every time the badge enters BT-PAIRING mode."
+    },
+    "no_target": {
+      "message": "No configured badge was targeted."
+    },
+    "entry_not_loaded": {
+      "message": "{name} is not loaded."
+    },
+    "path_not_allowed": {
+      "message": "Home Assistant is not allowed to read {path}. Add its folder to allowlist_external_dirs."
+    },
+    "image_unreadable": {
+      "message": "Could not read the image {path}: {error}"
+    },
+    "media_not_local": {
+      "message": "{path} is not a local media file; only local media can be sent to the badge."
+    },
+    "nextgen_required": {
+      "message": "{name} does not support this: it needs the open Badge Magic firmware."
+    },
+    "command_failed": {
+      "message": "The command to {name} failed: {error}"
+    },
+    "invalid_name": {
+      "message": "The Bluetooth name must be 1 to 20 bytes long."
+    },
+    "splash_too_large": {
+      "message": "The splash image {path} is {width}x{height} pixels, which takes {bytes} bytes; the badge accepts at most {max} bytes (for example 48x42 or 40x44)."
+    }
+  },
+  "services": {
+    "send_messages": {
+      "name": "Send messages",
+      "description": "Uploads up to 8 messages to the badge, replacing everything stored on it. Each message has either text or an image. On the open firmware the badge then returns to its menu.",
+      "fields": {
+        "messages": {
+          "name": "Messages",
+          "description": "List of 1 to 8 messages. Each has 'text' or 'image' (a file path Home Assistant may read, or a local media-source:// URI), and optionally 'mode' (scroll_left, scroll_right, scroll_up, scroll_down, fixed, animation, snowflake, picture, laser), 'speed' (1-8), 'flash', 'marquee' and 'font' (normal, compact, tiny). Fields left out use the badge's options."
+        },
+        "pin": {
+          "name": "PIN",
+          "description": "The 4-digit PIN the badge shows in BT-PAIRING mode when its security setting is on."
+        },
+        "set_clock": {
+          "name": "Set clock",
+          "description": "Send the current time so the badge sets its clock. Defaults to the badge's option."
+        }
+      }
+    },
+    "set_splash_screen": {
+      "name": "Set splash screen",
+      "description": "Replaces the image the badge scrolls through when it starts (open firmware). Takes effect at the next start.",
+      "fields": {
+        "image": {
+          "name": "Image",
+          "description": "An image file or .xbm file Home Assistant may read, or a local media-source:// URI. Larger images are scaled down to fit 48x44 pixels; the bitmap must fit in 255 bytes."
+        },
+        "frame_height": {
+          "name": "Frame height",
+          "description": "Rows the splash moves per step."
+        },
+        "speed_ms": {
+          "name": "Frame delay",
+          "description": "Milliseconds between splash frames."
+        }
+      }
+    },
+    "stream_frame": {
+      "name": "Stream frame",
+      "description": "Shows one 44x11 frame on the display right away (open firmware). Turns streaming on if needed; the badge's own messages return when streaming is turned off.",
+      "fields": {
+        "text": {
+          "name": "Text",
+          "description": "Text to show. Give text or an image."
+        },
+        "image": {
+          "name": "Image",
+          "description": "An image file Home Assistant may read, or a local media-source:// URI, scaled to 11 pixels high."
+        },
+        "font": {
+          "name": "Font",
+          "description": "Font for the text. Defaults to the badge's option."
+        },
+        "align": {
+          "name": "Alignment",
+          "description": "Where to place content narrower than the display."
+        }
+      }
+    },
+    "stream_text": {
+      "name": "Stream text",
+      "description": "Shows text by streaming frames to the display (open firmware), with Home Assistant doing the scrolling. Returns once streaming has started.",
+      "fields": {
+        "text": {
+          "name": "Text",
+          "description": "Text to show."
+        },
+        "font": {
+          "name": "Font",
+          "description": "Font for the text. Defaults to the badge's option."
+        },
+        "effect": {
+          "name": "Effect",
+          "description": "Scroll the text, show it fixed, or scroll only if it is wider than the display."
+        },
+        "fps": {
+          "name": "Frames per second",
+          "description": "Scroll speed: one column per frame."
+        },
+        "duration": {
+          "name": "Duration",
+          "description": "Keep scrolling (or showing fixed text) for this many seconds. Without it, scrolling text passes once."
+        },
+        "stop_after": {
+          "name": "Stop streaming when done",
+          "description": "Leave streaming afterwards so the badge's own messages return. Otherwise the last frame stays on the display."
+        }
+      }
+    }
+  },
+  "issues": {
+    "bluetooth_off_after_upload": {
+      "title": "{name} switched Bluetooth off after an upload",
+      "description": "The open Badge Magic firmware turns Bluetooth off after it receives messages, so Home Assistant can no longer reach {name}. Put the badge in BT-PAIRING mode to reconnect.\n\nTo keep the badge reachable, turn on **Keep Bluetooth on after uploads** in the badge's options, and turn on the **Always-on Bluetooth** switch so the badge advertises after it restarts. This issue clears itself when the badge advertises again."
+    }
+  }
+}

@@ -1,0 +1,25 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.14"
+      - name: Install dependencies
+        run: |
+          uv venv
+          # The library from this repository, so both are tested together.
+          uv pip install -r requirements_test.txt -e ./badgemagic-ble
+      - name: Run tests
+        run: uv run --no-project python -m pytest -q
