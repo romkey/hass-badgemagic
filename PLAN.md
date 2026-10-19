@@ -572,3 +572,10 @@ in `badgemagic_ble/__init__.py` that `pyproject.toml` reads. The CLI installs fr
 GitHub with `uv tool install "git+https://github.com/romkey/hass-badgemagic#subdirectory=badgemagic-ble"`.
 This supersedes the PyPI parts of section 2a, section 4 item 4, and the release
 steps above. A future Home Assistant core submission would need the library on PyPI.
+
+## Home Assistant test (2026-10-19)
+
+The user installed the integration on their Home Assistant and reports that it
+works. This supersedes the "untested on a real Home Assistant instance" notes in the
+status sections above. The "Keep Bluetooth on after uploads" linger behavior has not
+been reported on specifically and stays marked unverified.

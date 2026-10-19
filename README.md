@@ -16,12 +16,14 @@ the badge over Bluetooth Low Energy using the [`badgemagic-ble`](badgemagic-ble/
 library, which the integration carries inside it. Home Assistant installs nothing
 extra for it: no PyPI package and no download at startup.
 
-> **Status: untested on a real Home Assistant instance.** The integration passes
-> its automated tests with the badge client mocked. Home Assistant's Bluetooth
-> stack does not run on macOS, where it was developed, so it has not yet talked to
-> a badge from Home Assistant. The library has been checked against a real badge
-> from a Mac: scanning, uploading text, reading device info and battery, and
-> setting brightness.
+> **Keep the badge in Bluetooth range.** Bluetooth LE reaches about a room, and
+> less through walls. The badge needs to be near your Home Assistant device, or near
+> an [ESPHome Bluetooth proxy](https://esphome.io/components/bluetooth_proxy/) in active (connectable) mode. ESPHome has
+> [ready-made proxy firmware](https://esphome.io/projects/?type=bluetooth) you can flash onto an ESP32 from the browser.
+
+## AI disclosure
+
+Written by AI under human guidance.
 
 ## What you get
 
@@ -152,8 +154,16 @@ Per badge (**Settings > Devices & services > Badge Magic > Configure**):
 
 ## Reaching the badge
 
-Home Assistant can only connect to a badge while it advertises over Bluetooth. On
-the open firmware that happens:
+Home Assistant talks to the badge directly over Bluetooth LE, so the badge has to
+be within range of a Bluetooth adapter Home Assistant uses. That is either the
+adapter in the Home Assistant device itself, or an
+[ESPHome Bluetooth proxy](https://esphome.io/components/bluetooth_proxy/) placed near where the badge is used. The proxy
+must be in active mode, since Home Assistant needs to connect to the badge, not only
+listen to it. If the badge is only sometimes reachable, or connections and streams
+drop, move it closer or add a proxy.
+
+Home Assistant can also only connect to a badge while it advertises. On the open
+firmware that happens:
 
 - while the badge is in **BT-PAIRING** mode (from the badge's menu), and from then
   on until the next upload, even after leaving pairing mode; or
@@ -214,8 +224,9 @@ The display preview follows a stream at most once a second.
 
 - Home Assistant 2025.2 or newer with working Bluetooth: a local adapter on Home
   Assistant OS or Linux with BlueZ, or an
-  [ESPHome Bluetooth proxy](https://esphome.io/components/bluetooth_proxy.html)
-  in active (connectable) mode near the badge.
+  [ESPHome Bluetooth proxy](https://esphome.io/components/bluetooth_proxy/) in active (connectable) mode.
+- **The badge within Bluetooth range** of that adapter or proxy: about a room, less
+  through walls. See [Reaching the badge](#reaching-the-badge).
 - Nothing else. The integration bundles its `badgemagic_ble` library, and that
   library's own dependencies (bleak, bleak-retry-connector and Pillow) already
   ship with Home Assistant, so the manifest lists no requirements.
