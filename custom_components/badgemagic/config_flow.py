@@ -6,7 +6,6 @@ import logging
 from typing import Any
 
 import voluptuous as vol
-from badgemagic_ble import BadgeClient, BadgeError
 from bleak.exc import BleakError
 from homeassistant.components.bluetooth import (
     BluetoothServiceInfoBleak,
@@ -26,6 +25,7 @@ from homeassistant.helpers.selector import (
     SelectSelectorMode,
 )
 
+from .badgemagic_ble import BadgeClient, BadgeError
 from .const import (
     CONF_FIRMWARE,
     CONF_FLASH,

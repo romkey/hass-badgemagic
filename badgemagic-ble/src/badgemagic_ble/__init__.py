@@ -1,7 +1,5 @@
 """Bluetooth LE client for LED badges running the FOSSASIA Badge Magic firmware."""
 
-from importlib.metadata import PackageNotFoundError, version
-
 from .exceptions import (
     BadgeConnectionError,
     BadgeError,
@@ -22,10 +20,9 @@ from .exceptions import (
 from .protocol.legacy import Message, Mode, OemBrightness, chunk16, encode_frame
 from .render import FONT_NAMES, Bitmap, Xbm, get_font, load_image, parse_xbm, render_text
 
-try:
-    __version__ = version("badgemagic-ble")
-except PackageNotFoundError:  # running from a source tree
-    __version__ = "0.0.0"
+# The single source of the version: pyproject.toml reads it from here, and the
+# copy bundled in the Home Assistant integration carries it along.
+__version__ = "0.1.0"
 
 
 def __getattr__(name: str):  # noqa: ANN202

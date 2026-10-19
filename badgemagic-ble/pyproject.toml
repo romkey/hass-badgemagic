@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "badgemagic-ble"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Bluetooth LE client for LED badges running the FOSSASIA Badge Magic firmware"
 readme = "README.md"
 license = "Apache-2.0"
@@ -37,6 +37,9 @@ badgemagic = "badgemagic_ble.cli:main"
 Source = "https://github.com/romkey/hass-badgemagic/tree/main/badgemagic-ble"
 Issues = "https://github.com/romkey/hass-badgemagic/issues"
 Firmware = "https://github.com/fossasia/badgemagic-firmware"
+
+[tool.hatch.version]
+path = "src/badgemagic_ble/__init__.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/badgemagic_ble"]

@@ -6,8 +6,6 @@ from pathlib import Path
 from unittest.mock import MagicMock
 
 import pytest
-from badgemagic_ble import BadgeConnectionError, CommandError, Mode, OemBrightness, Xbm, render_text
-from badgemagic_ble.client import KEEP_ADVERTISING_LINGER
 from homeassistant.components.button import DOMAIN as BUTTON_DOMAIN
 from homeassistant.components.button import SERVICE_PRESS
 from homeassistant.components.number import ATTR_VALUE, SERVICE_SET_VALUE
@@ -24,6 +22,15 @@ from PIL import Image
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 from pytest_homeassistant_custom_component.typing import ClientSessionGenerator
 
+from custom_components.badgemagic.badgemagic_ble import (
+    BadgeConnectionError,
+    CommandError,
+    Mode,
+    OemBrightness,
+    Xbm,
+    render_text,
+)
+from custom_components.badgemagic.badgemagic_ble.client import KEEP_ADVERTISING_LINGER
 from custom_components.badgemagic.const import CONF_KEEP_BLUETOOTH, CONF_WIDE_TEXT, DOMAIN, SERVICE_UUID
 
 from .conftest import ADDRESS, inject_advertisement, make_service_info

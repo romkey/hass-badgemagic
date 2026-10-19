@@ -5,8 +5,8 @@ from __future__ import annotations
 from datetime import timedelta
 from typing import Final
 
-from badgemagic_ble import FONT_NAMES, Mode
-from badgemagic_ble.const import LEGACY_SERVICE_UUID
+from .badgemagic_ble import FONT_NAMES, Mode
+from .badgemagic_ble.const import LEGACY_SERVICE_UUID
 
 DOMAIN: Final = "badgemagic"
 

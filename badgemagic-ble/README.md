@@ -16,17 +16,36 @@ Badges still on the OEM firmware (`LSLED`) work for uploads.
 - `badgemagic_ble.client.BadgeClient`: the BLE client, built on `bleak` and
   `bleak-retry-connector`.
 
-This is the protocol layer for a Home Assistant integration. It needs Python
-3.13+ and is licensed Apache-2.0.
+This is the protocol layer for the Home Assistant integration in the same
+repository, which carries a copy of it (see "The bundled library" in the top-level
+README). It needs Python 3.13+ and is licensed Apache-2.0. It is not published on
+PyPI.
 
-## Install (from this checkout)
+## Install
+
+The command-line tool, straight from GitHub (needs `git`):
+
+```bash
+uv tool install "git+https://github.com/romkey/hass-badgemagic#subdirectory=badgemagic-ble"
+```
+
+Or with pip, into a virtual environment:
+
+```bash
+pip install "git+https://github.com/romkey/hass-badgemagic#subdirectory=badgemagic-ble"
+```
+
+For development, from this checkout:
 
 ```bash
 python3.13 -m venv .venv
 .venv/bin/pip install -e '.[dev]'
 ```
 
-Then `.venv/bin/badgemagic --help` lists the commands.
+Then `badgemagic --help` lists the commands.
+
+After changing the library, run `python3 scripts/sync_library.py` from the
+repository root to refresh the integration's copy.
 
 ## Getting a badge on the air: BT-PAIRING mode
 

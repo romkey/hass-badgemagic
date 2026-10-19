@@ -6,8 +6,6 @@ from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
-from badgemagic_ble import BadgeConnectionError, Bitmap, render_text
-from badgemagic_ble.render import fit_columns
 from homeassistant.components.switch import DOMAIN as SWITCH_DOMAIN
 from homeassistant.components.text import DOMAIN as TEXT_DOMAIN
 from homeassistant.const import ATTR_DEVICE_ID, ATTR_ENTITY_ID, SERVICE_TURN_OFF, SERVICE_TURN_ON, STATE_OFF, STATE_ON
@@ -17,6 +15,8 @@ from homeassistant.helpers import device_registry as dr
 from PIL import Image
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
+from custom_components.badgemagic.badgemagic_ble import BadgeConnectionError, Bitmap, render_text
+from custom_components.badgemagic.badgemagic_ble.render import fit_columns
 from custom_components.badgemagic.const import DOMAIN
 from custom_components.badgemagic.coordinator import scroll_frames
 

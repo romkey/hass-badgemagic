@@ -12,7 +12,18 @@ from dataclasses import asdict, dataclass, replace
 from datetime import datetime
 from typing import Any
 
-from badgemagic_ble import (
+from bleak.exc import BleakError
+from homeassistant.components import bluetooth
+from homeassistant.config_entries import ConfigEntry
+from homeassistant.core import CALLBACK_TYPE, HomeAssistant, callback
+from homeassistant.exceptions import HomeAssistantError
+from homeassistant.helpers import device_registry as dr
+from homeassistant.helpers import issue_registry as ir
+from homeassistant.helpers.event import async_track_time_interval
+from homeassistant.helpers.storage import Store
+from homeassistant.util import dt as dt_util
+
+from .badgemagic_ble import (
     BadgeClient,
     BadgeError,
     Bitmap,
@@ -25,19 +36,8 @@ from badgemagic_ble import (
     encode_frame,
     render_text,
 )
-from badgemagic_ble.client import KEEP_ADVERTISING_LINGER
-from badgemagic_ble.render import fit_columns
-from bleak.exc import BleakError
-from homeassistant.components import bluetooth
-from homeassistant.config_entries import ConfigEntry
-from homeassistant.core import CALLBACK_TYPE, HomeAssistant, callback
-from homeassistant.exceptions import HomeAssistantError
-from homeassistant.helpers import device_registry as dr
-from homeassistant.helpers import issue_registry as ir
-from homeassistant.helpers.event import async_track_time_interval
-from homeassistant.helpers.storage import Store
-from homeassistant.util import dt as dt_util
-
+from .badgemagic_ble.client import KEEP_ADVERTISING_LINGER
+from .badgemagic_ble.render import fit_columns
 from .const import (
     BATTERY_INTERVAL,
     BLUETOOTH_OFF_ISSUE_WINDOW,

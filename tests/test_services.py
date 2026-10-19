@@ -6,7 +6,6 @@ from pathlib import Path
 from unittest.mock import MagicMock
 
 import pytest
-from badgemagic_ble import Mode, PinRejected, PinRequired, load_image, render_text
 from homeassistant.const import ATTR_DEVICE_ID, ATTR_ENTITY_ID
 from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import HomeAssistantError, ServiceValidationError
@@ -14,6 +13,7 @@ from homeassistant.helpers import device_registry as dr
 from PIL import Image
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
+from custom_components.badgemagic.badgemagic_ble import Mode, PinRejected, PinRequired, load_image, render_text
 from custom_components.badgemagic.const import DOMAIN, SERVICE_SEND_MESSAGES
 
 from .conftest import ADDRESS

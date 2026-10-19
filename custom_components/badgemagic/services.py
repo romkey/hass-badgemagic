@@ -6,8 +6,6 @@ from pathlib import Path
 from typing import Any
 
 import voluptuous as vol
-from badgemagic_ble import Bitmap, Message, Xbm, load_image, parse_xbm
-from badgemagic_ble.protocol.ng import SPLASH_MAX_BITS
 from homeassistant.config_entries import ConfigEntryState
 from homeassistant.const import ATTR_DEVICE_ID, ATTR_ENTITY_ID
 from homeassistant.core import HomeAssistant, ServiceCall, callback
@@ -16,6 +14,8 @@ from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers import entity_registry as er
 
+from .badgemagic_ble import Bitmap, Message, Xbm, load_image, parse_xbm
+from .badgemagic_ble.protocol.ng import SPLASH_MAX_BITS
 from .const import (
     ALIGNMENTS,
     ATTR_ALIGN,

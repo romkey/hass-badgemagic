@@ -6,7 +6,6 @@ from datetime import timedelta
 from unittest.mock import MagicMock
 
 import pytest
-from badgemagic_ble import BadgeConnectionError, Mode, UploadError, render_text
 from freezegun.api import FrozenDateTimeFactory
 from homeassistant.components.notify import ATTR_MESSAGE, SERVICE_SEND_MESSAGE
 from homeassistant.components.notify import DOMAIN as NOTIFY_DOMAIN
@@ -32,6 +31,7 @@ from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers import entity_registry as er
 from pytest_homeassistant_custom_component.common import MockConfigEntry, async_fire_time_changed
 
+from custom_components.badgemagic.badgemagic_ble import BadgeConnectionError, Mode, UploadError, render_text
 from custom_components.badgemagic.const import DOMAIN, SERVICE_UUID
 from custom_components.badgemagic.diagnostics import async_get_config_entry_diagnostics
 

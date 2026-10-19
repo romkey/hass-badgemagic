@@ -1,0 +1,26 @@
+Bundled bitmap fonts
+====================
+
+The three BDF files in this directory are copied unmodified from the X.Org
+misc-misc font package:
+
+  Source:  https://gitlab.freedesktop.org/xorg/font/misc-misc
+  Commit:  c4e2af05583764fae3d0b2aa20d5c93b031cbcbf
+           ("font-misc-misc 1.1.3", 2023-02-27)
+
+  | badgemagic font | file     | cell (w x h) | SHA-256                                                          |
+  |-----------------|----------|--------------|------------------------------------------------------------------|
+  | normal          | 6x10.bdf | 6 x 10       | 99abf27fa2ca5a5171cad3df13aed2d4c55e73698cb141981b3e2268c733f64c |
+  | compact         | 5x8.bdf  | 5 x 8        | 72dbfa5359a1f327ce87b9db6371bdc98c057619605532c0010550ac76b08a35 |
+  | tiny            | 4x6.bdf  | 4 x 6        | dab0fc40105137bae55cd60c8f061c942787a4da21e44df28deca1525851a9c0 |
+
+These are the classic X11 "fixed" fonts maintained by Markus Kuhn. They are in
+the public domain. Each file carries this statement in its COPYRIGHT property:
+
+  5x8.bdf and 4x6.bdf:  "Public domain font.  Share and enjoy."
+  6x10.bdf:             "Public domain terminal emulator font.  Share and enjoy."
+
+and the package's COPYING file reads "Public domain font.  Share and enjoy."
+
+Do not edit these files. To update them, copy the new versions from the
+upstream repository and update the commit and hashes above.

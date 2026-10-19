@@ -554,3 +554,21 @@ The library stays in `badgemagic-ble/` and releases from the same repository wit
 CI and PyPI publishing moved to the root `.github/workflows/`, and the integration
 tests now install the library from the checkout. See `RELEASING.md`. Both projects
 are Apache-2.0. Nothing has been released to PyPI or as a GitHub release yet.
+
+## Bundled library instead of PyPI (2026-10-18)
+
+The user did not want to publish anything on PyPI. Home Assistant can install a
+requirement from a URL (`badgemagic-ble @ https://.../badgemagic_ble-0.1.0-py3-none-any.whl`
+installs with uv), but it cannot verify a URL requirement's version, so it reinstalls
+at every start, and a failed install (GitHub unreachable) stops the integration
+loading. The `URL#name==version` form fails in uv for a wheel.
+
+So the integration now **bundles the library**: `scripts/sync_library.py` copies
+`badgemagic-ble/src/badgemagic_ble/` to `custom_components/badgemagic/badgemagic_ble/`,
+the integration imports `.badgemagic_ble`, and `manifest.json` has no requirements
+(bleak, bleak-retry-connector and Pillow ship with Home Assistant). CI fails if the
+copy drifts. The PyPI publish workflow is gone. The library version is now a constant
+in `badgemagic_ble/__init__.py` that `pyproject.toml` reads. The CLI installs from
+GitHub with `uv tool install "git+https://github.com/romkey/hass-badgemagic#subdirectory=badgemagic-ble"`.
+This supersedes the PyPI parts of section 2a, section 4 item 4, and the release
+steps above. A future Home Assistant core submission would need the library on PyPI.

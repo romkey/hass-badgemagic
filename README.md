@@ -4,7 +4,8 @@ A Home Assistant custom integration for 11x44 LED name badges running the
 [FOSSASIA Badge Magic firmware](https://github.com/fossasia/badgemagic-firmware).
 Badges on the OEM `LSLED` firmware work for uploads too. The integration talks to
 the badge over Bluetooth Low Energy using the [`badgemagic-ble`](badgemagic-ble/)
-library.
+library, which the integration carries inside it. Home Assistant installs nothing
+extra for it: no PyPI package and no download at startup.
 
 > **Status: untested on a real Home Assistant instance.** The integration passes
 > its automated tests with the badge client mocked. Home Assistant's Bluetooth
@@ -206,11 +207,9 @@ The display preview follows a stream at most once a second.
   Assistant OS or Linux with BlueZ, or an
   [ESPHome Bluetooth proxy](https://esphome.io/components/bluetooth_proxy.html)
   in active (connectable) mode near the badge.
-- The `badgemagic-ble` library on PyPI. **It is not published yet.** Home
-  Assistant installs the version pinned in `manifest.json`
-  (`badgemagic-ble==0.1.0`) from PyPI when the integration loads, so the
-  integration fails to load until that release exists. [RELEASING.md](RELEASING.md)
-  lists the steps.
+- Nothing else. The integration bundles its `badgemagic_ble` library, and that
+  library's own dependencies (bleak, bleak-retry-connector and Pillow) already
+  ship with Home Assistant, so the manifest lists no requirements.
 - This repository, `https://github.com/romkey/hass-badgemagic`, added to HACS as a
   custom repository.
 
@@ -311,7 +310,7 @@ uv venv --python 3.14 .venv-ha
 ```
 
 ```bash
-uv pip install --python .venv-ha/bin/python -r requirements_test.txt -e ./badgemagic-ble
+uv pip install --python .venv-ha/bin/python -r requirements_test.txt
 ```
 
 ```bash
@@ -323,4 +322,19 @@ requirements of Home Assistant's `usb` and `bluetooth` integrations that the tes
 package does not pull in.
 
 The library has its own tests and virtual environment in `badgemagic-ble/`.
-[RELEASING.md](RELEASING.md) describes publishing the library and the integration.
+
+### The bundled library
+
+`badgemagic-ble/src/badgemagic_ble/` is the library's source.
+`custom_components/badgemagic/badgemagic_ble/` is a copy that the integration
+imports, so Home Assistant needs no requirements. Never edit the copy. After
+changing the library, refresh it:
+
+```bash
+python3 scripts/sync_library.py
+```
+
+The `Tests` workflow runs `scripts/sync_library.py --check` and fails if the copy
+is out of date. So does the release workflow.
+
+[RELEASING.md](RELEASING.md) describes releasing the integration.

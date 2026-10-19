@@ -14,7 +14,6 @@ from collections.abc import Generator
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
-from badgemagic_ble import DeviceInfo
 from bleak.backends.device import BLEDevice
 from bleak.backends.scanner import AdvertisementData
 from homeassistant.components import bluetooth
@@ -24,6 +23,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.setup import async_setup_component
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
+from custom_components.badgemagic.badgemagic_ble import DeviceInfo
 from custom_components.badgemagic.const import (
     CONF_FIRMWARE,
     CONF_HARDWARE,

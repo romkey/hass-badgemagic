@@ -9,6 +9,16 @@ permissions:
   contents: read
 
 jobs:
+  bundled-library:
+    name: Bundled library matches badgemagic-ble
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python3 scripts/sync_library.py --check
+
   pytest:
     runs-on: ubuntu-latest
     steps:
@@ -19,7 +29,8 @@ jobs:
       - name: Install dependencies
         run: |
           uv venv
-          # The library from this repository, so both are tested together.
-          uv pip install -r requirements_test.txt -e ./badgemagic-ble
+          # The integration uses its bundled copy of the library, so the
+          # library itself is not installed.
+          uv pip install -r requirements_test.txt
       - name: Run tests
         run: uv run --no-project python -m pytest -q

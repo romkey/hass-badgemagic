@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import io
 
-from badgemagic_ble import Bitmap
-from badgemagic_ble.render import fit_columns
 from PIL import Image, ImageDraw
 
+from .badgemagic_ble import Bitmap
+from .badgemagic_ble.render import fit_columns
 from .const import DISPLAY_COLUMNS
 
 PITCH = 10  # pixels per LED
