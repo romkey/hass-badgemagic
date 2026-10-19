@@ -1,5 +1,14 @@
 # Badge Magic LED badges for Home Assistant
 
+[![Tests](https://github.com/romkey/hass-badgemagic/actions/workflows/tests.yml/badge.svg)](https://github.com/romkey/hass-badgemagic/actions/workflows/tests.yml)
+[![Validate](https://github.com/romkey/hass-badgemagic/actions/workflows/validate.yml/badge.svg)](https://github.com/romkey/hass-badgemagic/actions/workflows/validate.yml)
+[![Library](https://github.com/romkey/hass-badgemagic/actions/workflows/library.yml/badge.svg)](https://github.com/romkey/hass-badgemagic/actions/workflows/library.yml)
+[![HACS Custom](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz/docs/faq/custom_repositories/)
+[![Home Assistant 2025.2+](https://img.shields.io/badge/Home%20Assistant-2025.2%2B-41BDF5?logo=home-assistant&logoColor=white)](https://www.home-assistant.io/)
+[![License: Apache-2.0](https://img.shields.io/github/license/romkey/hass-badgemagic)](LICENSE)
+
+[![Open your Home Assistant instance and open this repository in HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=romkey&repository=hass-badgemagic&category=integration)
+
 A Home Assistant custom integration for 11x44 LED name badges running the
 [FOSSASIA Badge Magic firmware](https://github.com/fossasia/badgemagic-firmware).
 Badges on the OEM `LSLED` firmware work for uploads too. The integration talks to
@@ -214,6 +223,11 @@ The display preview follows a stream at most once a second.
   custom repository.
 
 ### With HACS
+
+[![Open your Home Assistant instance and open this repository in HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=romkey&repository=hass-badgemagic&category=integration)
+
+The button opens this repository in HACS on your own Home Assistant, which covers
+steps 1 and 2. Otherwise:
 
 1. In HACS, open the menu (three dots) and choose **Custom repositories**.
 2. Add `https://github.com/romkey/hass-badgemagic` with type **Integration**.
