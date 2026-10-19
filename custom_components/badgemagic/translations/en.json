@@ -227,6 +227,10 @@
       "name": "Send messages",
       "description": "Uploads up to 8 messages to the badge, replacing everything stored on it. Each message has either text or an image. On the open firmware the badge then returns to its menu.",
       "fields": {
+        "device_id": {
+          "name": "Badge",
+          "description": "The badges to act on."
+        },
         "messages": {
           "name": "Messages",
           "description": "List of 1 to 8 messages. Each has 'text' or 'image' (a file path Home Assistant may read, or a local media-source:// URI), and optionally 'mode' (scroll_left, scroll_right, scroll_up, scroll_down, fixed, animation, snowflake, picture, laser), 'speed' (1-8), 'flash', 'marquee' and 'font' (normal, compact, tiny). Fields left out use the badge's options."
@@ -245,6 +249,10 @@
       "name": "Set splash screen",
       "description": "Replaces the image the badge scrolls through when it starts (open firmware). Takes effect at the next start.",
       "fields": {
+        "device_id": {
+          "name": "Badge",
+          "description": "The badges to act on."
+        },
         "image": {
           "name": "Image",
           "description": "An image file or .xbm file Home Assistant may read, or a local media-source:// URI. Larger images are scaled down to fit 48x44 pixels; the bitmap must fit in 255 bytes."
@@ -263,6 +271,10 @@
       "name": "Stream frame",
       "description": "Shows one 44x11 frame on the display right away (open firmware). Turns streaming on if needed; the badge's own messages return when streaming is turned off.",
       "fields": {
+        "device_id": {
+          "name": "Badge",
+          "description": "The badges to act on."
+        },
         "text": {
           "name": "Text",
           "description": "Text to show. Give text or an image."
@@ -285,6 +297,10 @@
       "name": "Stream text",
       "description": "Shows text by streaming frames to the display (open firmware), with Home Assistant doing the scrolling. Returns once streaming has started.",
       "fields": {
+        "device_id": {
+          "name": "Badge",
+          "description": "The badges to act on."
+        },
         "text": {
           "name": "Text",
           "description": "Text to show."

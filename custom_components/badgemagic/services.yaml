@@ -1,8 +1,11 @@
 send_messages:
-  target:
-    device:
-      integration: badgemagic
   fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: badgemagic
+          multiple: true
     messages:
       required: true
       example: >-
@@ -24,10 +27,13 @@ send_messages:
         boolean:
 
 set_splash_screen:
-  target:
-    device:
-      integration: badgemagic
   fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: badgemagic
+          multiple: true
     image:
       required: true
       example: /config/www/splash.png
@@ -50,10 +56,13 @@ set_splash_screen:
           mode: box
 
 stream_frame:
-  target:
-    device:
-      integration: badgemagic
   fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: badgemagic
+          multiple: true
     text:
       example: "21.5°"
       selector:
@@ -81,10 +90,13 @@ stream_frame:
           translation_key: align
 
 stream_text:
-  target:
-    device:
-      integration: badgemagic
   fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: badgemagic
+          multiple: true
     text:
       required: true
       example: "Dinner is ready"
